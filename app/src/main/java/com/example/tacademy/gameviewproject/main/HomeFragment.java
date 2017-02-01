@@ -48,7 +48,42 @@ public class HomeFragment extends Fragment {
 
         viewPager.setAdapter(myPagerAdapter);
 
+        // 뷰 페이저에 이벤트 등록 , 페이지 변환 감지 한다.
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                Log.i("UI", position + " : " + positionOffset + "," +positionOffsetPixels);
+                changeDot(position);
+            }
+            @Override
+            public void onPageSelected(int position) {
+//                Toast.makeText(MainActivity.this, position+"번 선택",Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+//                Log.i("UI", "변경 : " + state);
+
+            }
+        });
+
+
         return view;
+    }
+
+    // 하단 페이지 도트 변경
+    public void changeDot(int position){
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i<poster.length; i++){
+            if(i == position){
+                sb.append("● ");
+
+            }else{
+                sb.append("○ ");
+            }
+            // 버퍼를 스트링으로 만들고 앞뒤공백을 제거해서 화면에 반영한다
+            // 버퍼->String -> 공백제거-> 화면 반영
+            curDot.setText(sb.toString().trim());
+        }
     }
 
     // 페이저 아답터
@@ -86,8 +121,6 @@ public class HomeFragment extends Fragment {
         }
 
     }
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
