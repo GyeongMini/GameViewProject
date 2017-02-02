@@ -115,7 +115,7 @@ public class MainFragmentActivity extends AppCompatActivity
             super(fm);
         }
 
-        // 프래그 먼트 3개 생성
+        // 프래그 먼트 2개 생성
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {
@@ -131,7 +131,7 @@ public class MainFragmentActivity extends AppCompatActivity
             return 2;
         }
 
-        // 각각의 프래그 먼트에  tatle 작성
+        // 각각의 프래그 먼트에  title 작성
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {

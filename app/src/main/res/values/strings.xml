@@ -6,4 +6,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="action_settings">Settings</string>
+
+    <!-- 리뷰 작성 페이지 -->
+    <string name="review_make_title"> 리뷰 작성 </string>
 </resources>

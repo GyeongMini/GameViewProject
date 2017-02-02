@@ -40,7 +40,6 @@ public class HomeFragment extends Fragment {
     {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
-
         viewPager = (ViewPager)view.findViewById(R.id.viewPager);
         curDot = (TextView)view.findViewById(R.id.curDot);
         myPagerAdapter = new MyPagerAdapter();
@@ -65,7 +64,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
 
         return view;
     }
@@ -107,14 +105,14 @@ public class HomeFragment extends Fragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            Log.i("UI", "뷰페이저 호출 " + position);
-            // position => 요청 페이지 요청 페이지 별로 뷰를 생성해서 처리!
-            // 요청 페이지 해당하는 url 획득
-            String url = poster[position];
-            // 이미지 뷰 생성
-            ImageView imageView = new ImageView(context);
-            // 이미지 세팅
-            ImageProc.getInstance().drawImage(url, imageView);
+                Log.i("UI", "뷰페이저 호출 " + position);
+                // position => 요청 페이지 요청 페이지 별로 뷰를 생성해서 처리!
+                // 요청 페이지 해당하는 url 획득
+                String url = poster[position];
+                // 이미지 뷰 생성
+                ImageView imageView = new ImageView(context);
+                // 이미지 세팅
+                ImageProc.getInstance().drawImage(url, imageView);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);//무조건 꽉 채우기
             ((ViewPager)container).addView(imageView);
             return imageView; //super.instantiateItem(container, position);
