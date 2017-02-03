@@ -29,9 +29,14 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.google.code.gson:gson:2.8.0'
+    // 통신( volley )
     compile 'com.navercorp.volleyextensions:volley-extensions:1.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    // 버터나이프
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    // circleimageview
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    // 카드뷰 appcompat 과 버전을 맞춰줘야 한다.
+    compile 'com.android.support:cardview-v7:24.2.1'
 }

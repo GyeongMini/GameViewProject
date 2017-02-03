@@ -68,6 +68,26 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    // 핸들러를 이용하여 자동적으로 페이지 변환
+//    int pagerCurPage;
+//    Handler ackHandler = new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            switch (msg.what){
+//                case 0:{
+//                    pagerCurPage++;
+//                    int page = pagerCurPage % poster.length;
+//                    viewPager.setCurrentItem(page);
+//                    ackHandler.sendEmptyMessageDelayed(0,1000*2);
+//                }
+//                break;
+//            }
+//        }
+//    };
+
+
+
     // 하단 페이지 도트 변경
     public void changeDot(int position){
         StringBuffer sb = new StringBuffer();
@@ -83,6 +103,7 @@ public class HomeFragment extends Fragment {
             curDot.setText(sb.toString().trim());
         }
     }
+
 
     // 페이저 아답터
     class MyPagerAdapter extends PagerAdapter {

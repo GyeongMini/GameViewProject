@@ -3,9 +3,8 @@ package com.example.tacademy.gameviewproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
-import com.example.tacademy.gameviewproject.main.MainFragmentActivity;
+import com.example.tacademy.gameviewproject.intro.IntroActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -14,13 +13,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-    }
-    public void onNextPage(View view){
-        Intent intent = new Intent(this, MainFragmentActivity.class);
+        Intent intent = new Intent(this, IntroActivity.class);
         startActivity(intent);
-        finish();
+
     }
+//    public void onNextPage(View view){
+//        Intent intent = new Intent(this, MainFragmentActivity.class);
+//        startActivity(intent);
+//        finish();
+//    }
 
 }

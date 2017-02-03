@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">GameViewProject</string>
+     <!--앱 이름-->
+    <string name="app_name">겜뷰</string>
+     <!--메인 프레그먼트 이름-->
     <string name="title_activity_main_fragment">MainFragmentActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

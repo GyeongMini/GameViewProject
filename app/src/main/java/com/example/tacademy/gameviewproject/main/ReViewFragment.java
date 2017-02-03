@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,8 @@ import com.example.tacademy.gameviewproject.main.review.ReViewMakeActivity;
 
 public class ReViewFragment extends Fragment {
     Context context;
+    RecyclerView recyclerView;
+    GridLayoutManager gridLayoutManager;
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState)
     {
@@ -32,6 +36,12 @@ public class ReViewFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+//        // 고정 크기 그리드
+//        gridLayoutManager = new GridLayoutManager(context, 2);
+//        gridLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+//        recyclerView.setLayoutManager(gridLayoutManager);
+
         return view;
     }
 
