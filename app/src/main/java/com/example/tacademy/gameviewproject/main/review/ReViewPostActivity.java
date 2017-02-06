@@ -9,10 +9,10 @@ import com.example.tacademy.gameviewproject.R;
  * 리뷰 작성 페이지 생성
  */
 
-public class ReViewMakeActivity extends AppCompatActivity{
+public class ReViewPostActivity extends AppCompatActivity{
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.review_make_main);
+        setContentView(R.layout.review_post_main);
     }
 }

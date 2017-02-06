@@ -36,8 +36,7 @@ public class HomeFragment extends Fragment {
             };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
         viewPager = (ViewPager)view.findViewById(R.id.viewPager);
@@ -89,15 +88,15 @@ public class HomeFragment extends Fragment {
 
 
     // 하단 페이지 도트 변경
-    public void changeDot(int position){
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i<poster.length; i++){
-            if(i == position){
-                sb.append("● ");
+        public void changeDot(int position){
+            StringBuffer sb = new StringBuffer();
+            for(int i = 0; i<poster.length; i++){
+                if(i == position){
+                    sb.append("● ");
 
-            }else{
-                sb.append("○ ");
-            }
+                }else{
+                    sb.append("○ ");
+                }
             // 버퍼를 스트링으로 만들고 앞뒤공백을 제거해서 화면에 반영한다
             // 버퍼->String -> 공백제거-> 화면 반영
             curDot.setText(sb.toString().trim());
@@ -138,7 +137,6 @@ public class HomeFragment extends Fragment {
             ((ViewPager)container).addView(imageView);
             return imageView; //super.instantiateItem(container, position);
         }
-
     }
     @Override
     public void onAttach(Context context) {
