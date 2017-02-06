@@ -29,13 +29,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="제목" />
+            android:text="제목"
+            />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="제목을 입력해 주세요 "
-            android:id="@+id/editText" />
+            android:id="@+id/title"/>
 
     </LinearLayout>
 
@@ -80,11 +81,12 @@
         android:id="@+id/button"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_weight="0"
         android:gravity="center"
+        android:id="@+id/content"
         android:hint="텍스트 입력 창입니다." />
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,14 +99,13 @@
             android:layout_height="match_parent"
             android:src="@mipmap/main_icon"
             android:layout_gravity="left"
-            android:id="@+id/imageView3"
             android:layout_weight="0.19" />
 
         <Button
             android:text="저장"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/button2"
+            android:id="@+id/reviewsave"
             />
 
     </LinearLayout>

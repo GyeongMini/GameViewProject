@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.tacademy.gameviewproject.R;
-import com.example.tacademy.gameviewproject.main.MainFragmentActivity;
+import com.example.tacademy.gameviewproject.sign.SignUpActivity;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class IntroActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
                 // 화면으로 이동(Intent)
-                Intent intent = new Intent(IntroActivity.this, MainFragmentActivity.class);
+                Intent intent = new Intent(IntroActivity.this, SignUpActivity.class);
                 // 화면 전환 수행
                 startActivity(intent);
 

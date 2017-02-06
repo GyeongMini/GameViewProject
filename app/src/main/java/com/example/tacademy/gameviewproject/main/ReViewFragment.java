@@ -14,12 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.tacademy.gameviewproject.PostHolder;
 import com.example.tacademy.gameviewproject.R;
 import com.example.tacademy.gameviewproject.main.review.ReViewPostActivity;
+import com.example.tacademy.gameviewproject.model.ReViewPost;
+import com.example.tacademy.gameviewproject.model.ReViewPostViewHolder;
 import com.example.tacademy.gameviewproject.ui.ImageProc;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 /**
  * 리뷰 메인 화면
@@ -29,38 +32,21 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class ReViewFragment extends Fragment {
     ImageView imageView;
     Context context;
-    RecyclerView recyclerview;
+
+
+    RecyclerView recyclerView;
     GridLayoutManager gridLayoutManager;
+    FirebaseRecyclerAdapter firebaseRecyclerAdapter;
+
     StaggeredGridLayoutManager staggeredGridLayoutManager;
 
-
-    MyAdapter myAdapter = new MyAdapter();
-    String[] txt = {"경민아","정신차려라","경민아","정신차려라","경민아","정신차려라","경민아","정신차려라","경민아","정신차려라","경민아","정신차려라"};
-
-    String[] poster =
-            {
-                    "http://postfiles12.naver.net/20151001_59/ews1016_1443638863998JpeAd_JPEG/%B7%B9%C1%F6%B4%F8%C6%AE%C0%CC%BA%ED6-2.jpg?type=w2",
-                    "http://postfiles9.naver.net/20151104_232/ereda_14466029312851WMhd_JPEG/%B7%B9%C1%F6%B4%F8%C6%AE%C0%CC%BA%ED_%288%29.jpg?type=w1",
-                    "http://cfile18.uf.daum.net/image/202C5F4F5015DE65315D64",
-                    "http://cfile89.uf.daum.net/image/136F1B10ABD9BB7B510261",
-                    "http://postfiles12.naver.net/20151001_59/ews1016_1443638863998JpeAd_JPEG/%B7%B9%C1%F6%B4%F8%C6%AE%C0%CC%BA%ED6-2.jpg?type=w2",
-                    "http://postfiles9.naver.net/20151104_232/ereda_14466029312851WMhd_JPEG/%B7%B9%C1%F6%B4%F8%C6%AE%C0%CC%BA%ED_%288%29.jpg?type=w1",
-                    "http://cfile18.uf.daum.net/image/202C5F4F5015DE65315D64",
-                    "http://cfile89.uf.daum.net/image/136F1B10ABD9BB7B510261",
-                    "http://postfiles12.naver.net/20151001_59/ews1016_1443638863998JpeAd_JPEG/%B7%B9%C1%F6%B4%F8%C6%AE%C0%CC%BA%ED6-2.jpg?type=w2",
-                    "http://postfiles9.naver.net/20151104_232/ereda_14466029312851WMhd_JPEG/%B7%B9%C1%F6%B4%F8%C6%AE%C0%CC%BA%ED_%288%29.jpg?type=w1",
-                    "http://cfile18.uf.daum.net/image/202C5F4F5015DE65315D64",
-                    "http://cfile89.uf.daum.net/image/136F1B10ABD9BB7B510261"
-            };
-
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         ImageProc.getInstance().getImageLoader(context); // 초기화
-        View view = inflater.inflate(R.layout.fragment_review,container,false);
+        View view = inflater.inflate(R.layout.fragment_review, container, false);
 
 //      fab 버튼을 눌럿을때 리뷰 작성 페이지로 이동 한다.
-        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,70 +54,51 @@ public class ReViewFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        recyclerview = (RecyclerView)view.findViewById(R.id.recyclerview);
-
-        // 고정 크기 그리드
-        gridLayoutManager = new GridLayoutManager(context, 2);
+        // 화면 세팅 구성
+        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
+        // 레이아웃 세팅
+        gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gridLayoutManager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerview.setLayoutManager(gridLayoutManager);
 
-        recyclerview.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
+        // 쿼리가 수행 되어야 한다. ( limitTofirest( 10개 데이터 가져옴 ) 앞에서 부터 last 뒤부터
+        Query query =
+                FirebaseDatabase.getInstance().getReference().child("posts").limitToLast(10);
+        // 아답터 생성
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ReViewPost, ReViewPostViewHolder>(
+                // 데이터 4개를 맞춰야함
+                ReViewPost.class,
+                R.layout.review_list_cardview,
+                ReViewPostViewHolder.class,
+                // 쿼리 결과 가 들어간다.
+                query
+        ){
+            // 레이아웃을 담기는 그릇, 데이터가 담기를 그릇, 필요한 인덱스
+            @Override
+            protected void populateViewHolder(ReViewPostViewHolder viewHolder, ReViewPost model, int position) {
+                // 1. position 정보를 가지고 -> 데이터 획득( 참조 획득 )
+                DatabaseReference databaseReference = getRef(position);
+                // 2. viewHolder로 -> 이벤트 등록
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // 상세보기로 이동
+                    }
+                });
+                // 3. viewHolder로 -> 데이터 세팅(bindToPost)
+                viewHolder.bindToPost(model, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
+        };
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
 
         return view;
     }
-
-    SweetAlertDialog alert;
-    public void onCategory(View view)
-    {
-        alert =
-                new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("사진선택")
-                        .setContentText("사진을 선택할 방법을 고르세요!!")
-                        .setConfirmText("카메라")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-
-                            }
-                        })
-                        .setCancelText("포토앨범")
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-
-                            }
-                        })
-        ;
-        alert.setCancelable(true);
-        alert.show();
-    }
-
-    // 아답터 생성
-    class MyAdapter extends RecyclerView.Adapter{
-
-        @Override
-        public int getItemCount() {
-            return txt.length;
-        }
-        // ViewHoledr 생성
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView =
-                    LayoutInflater
-                            .from(parent.getContext())
-                            .inflate(R.layout.review_list_cardview, parent, false);
-            PostHolder postHolder = new PostHolder(itemView);
-            return postHolder;
-        }
-
-        // ViewHoledr에 데이터를 설정(바인딩) 한다.
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ((PostHolder)holder).bindOnPost(txt[position], poster[position]);
-        }
-    }
-
     // Context 생성
     @Override
     public void onAttach(Context context) {
