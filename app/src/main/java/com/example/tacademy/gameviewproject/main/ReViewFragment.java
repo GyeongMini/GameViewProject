@@ -33,7 +33,6 @@ public class ReViewFragment extends Fragment {
     ImageView imageView;
     Context context;
 
-
     RecyclerView recyclerView;
     GridLayoutManager gridLayoutManager;
     FirebaseRecyclerAdapter firebaseRecyclerAdapter;
@@ -99,6 +98,10 @@ public class ReViewFragment extends Fragment {
 
         return view;
     }
+
+
+
+
     // Context 생성
     @Override
     public void onAttach(Context context) {
