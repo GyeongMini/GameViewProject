@@ -61,11 +61,14 @@ public class ReViewPostActivity extends BaseActivity {
     DatabaseReference databaseReference;
     // SweetAlertDialog 를 사용하기위해 전역 선언
     SweetAlertDialog alert;
+    String img_url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.review_post_main);
+
+        RxPaparazzo.register(getApplication());
 
         title = (EditText) findViewById(R.id.title);
         content = (EditText) findViewById(R.id.content);
@@ -83,8 +86,11 @@ public class ReViewPostActivity extends BaseActivity {
     }
 
     public void onSendPost() {
+        //   Log.i("AB",img_url);
+//            Log.i("SP",img_url);
         final String title_str = title.getText().toString();
         final String content_str = content.getText().toString();
+
         // 제목, 내용이 존재해야 함
         if (TextUtils.isEmpty(title_str)) {
             title.setError("필수 입력값입니다. ");
@@ -100,7 +106,9 @@ public class ReViewPostActivity extends BaseActivity {
         // 회원이 맞는지 체크 => id
         // okldBCjxq6dStzIaOXRMa898CSH2
         Log.i("CHAT", FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Log.i("CHAT", FirebaseStorage.getInstance().getReference().toString());
         final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String image_url = img_url;
         // 1. uid가 존재하는지 체크
         databaseReference.child("users")
                 .child(uid)
@@ -121,7 +129,7 @@ public class ReViewPostActivity extends BaseActivity {
 //                            showProgress("글 업로드 중");
                             // 글 작성 업로드
                             String key = databaseReference.child("posts").push().getKey();
-                            ReViewPost post = new ReViewPost(title_str, content_str, uid, user.getId());
+                            ReViewPost post = new ReViewPost(title_str, content_str, uid, user.getId(), image_url);
                             // Post class에 추가 해준다!
                             Map<String, Object> postMap = post.toPostMap();
                             // 여러 가지에 업데이트 방식으로 한번에 데이터를 삽입
@@ -230,7 +238,10 @@ public class ReViewPostActivity extends BaseActivity {
                 });
     }
 
-    public void loadImage(String path){
+    StorageReference riversRef;
+
+    public void loadImage(String path)
+    {
         alert.dismissWithAnimation();
         // 이미지 뷰에 이미지를 세팅
         String url = "file://" + path;
@@ -249,7 +260,7 @@ public class ReViewPostActivity extends BaseActivity {
         // 내 프로필 사진의 경로
         String uploadName = "profile/" + uri.getLastPathSegment();
         // 기둥에 가지 등록
-        StorageReference riversRef = root.child("images/" + uri.getLastPathSegment());
+        riversRef = root.child("images/" + uri.getLastPathSegment());
 
         // 업로드
         UploadTask uploadTask = riversRef.putFile(uri);
@@ -264,7 +275,9 @@ public class ReViewPostActivity extends BaseActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
                 Log.i("KK 1", downloadUrl.toString());
+                img_url = downloadUrl.toString();
             }
+
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
@@ -301,5 +314,3 @@ public class ReViewPostActivity extends BaseActivity {
             reviewsave.setVisibility(View.GONE);
     }
 }
-
-
