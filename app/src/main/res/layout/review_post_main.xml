@@ -71,14 +71,14 @@
             app:srcCompat="@android:drawable/btn_star" />
     </LinearLayout>
 
-    <ImageButton
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_weight="0"
         android:background="#000000ff"
-
+        android:onClick="onPhoto"
         android:hint="사진 등록 하는 곳 입니다. "
-        android:id="@+id/button"
+        android:id="@+id/imageupload"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <EditText

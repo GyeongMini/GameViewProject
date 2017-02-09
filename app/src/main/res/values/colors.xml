@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!--메인 툴바 색상표-->
+    <color name="main">#FDE30B</color>
+    <!--프레그 먼트 홈 버튼색상-->
+    <color name="fragmentHome">#F58307</color>
+    <!--프레그먼트 리뷰 버튼 색상-->
+    <color name="fragmentReview">#FBCE01</color>
+    <!--리뷰탭의 닉네임 색상-->
+    <color name="fragmentRecommend">#019ADA</color>
+    <!--카테고리 메인 색상-->
+    <color name="categorymain">#FCE30C</color>
 </resources>

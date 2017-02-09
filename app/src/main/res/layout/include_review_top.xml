@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_weight="0"
-        android:background="#ff00ff"
+        android:background="#000000ff"
         android:orientation="vertical">
 
         <LinearLayout
@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
+                android:background="@color/fragmentRecommend"
                 android:text="로그인시 맞춤 리뷰를 확인하실수 있습니다." />
 
         </LinearLayout>
@@ -33,6 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:background="@color/categorymain"
                 android:onClick="onCategory"
                 android:text="카테고리" />
 
@@ -46,7 +48,6 @@
 
 
         </LinearLayout>
-
 
     </LinearLayout>
 
