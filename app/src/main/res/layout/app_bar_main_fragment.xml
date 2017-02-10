@@ -16,23 +16,36 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            android:background="@color/main"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="검색"
-                android:layout_gravity="right"
-                android:background="#000000ff"
-                app:srcCompat="@android:drawable/ic_menu_search" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/homemain_icon" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:background="#000000ff"
+                    android:text="검색"
+                    app:srcCompat="@mipmap/search_icon" />
+            </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
-            android:background="@color/main"
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#f4f4f4"
+            app:tabIndicatorColor="@color/main" />
 
     </android.support.design.widget.AppBarLayout>
 

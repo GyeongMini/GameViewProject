@@ -41,6 +41,7 @@ public class IntroActivity extends AppCompatActivity {
                 Intent intent = new Intent(IntroActivity.this, SignUpActivity.class);
                 // 화면 전환 수행
                 startActivity(intent);
+                finish();
 
         }
     };

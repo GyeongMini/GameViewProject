@@ -41,7 +41,8 @@ public class MainFragmentActivity extends BaseActivity
         mViewPager.setAdapter(mSectionsPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
+        // 탭 레이아웃글자의 색상
+        tabLayout.setTabTextColors(getResources().getColor(R.color.fragmentHome),getResources().getColor(R.color.fragmentReview));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
