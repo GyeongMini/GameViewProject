@@ -21,9 +21,9 @@
         tools:replace="android:icon">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -31,12 +31,17 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".intro.IntroActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".sign.SignUpActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".sign.SignUpActivity" />
         <activity
             android:name=".main.review.ReViewPostActivity"
             android:label="@string/review_make_title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".mypage.MyPageMainFragmentActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

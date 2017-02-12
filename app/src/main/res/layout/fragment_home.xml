@@ -27,6 +27,13 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="NextMyPage"
+                android:id="@+id/nextmypage"
+                android:text="마이페이지로 이동"/>
+
         </LinearLayout>
 
     </ScrollView>
