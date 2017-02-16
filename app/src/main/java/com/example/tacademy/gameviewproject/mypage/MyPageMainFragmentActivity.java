@@ -74,6 +74,7 @@ public class MyPageMainFragmentActivity extends BaseActivity {
         }
     }
 
+    // fragment 생성
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -95,12 +96,14 @@ public class MyPageMainFragmentActivity extends BaseActivity {
             return fragment;
         }
 
+        // fragment 갯수
         @Override
         public int getCount() {
 
             return 4;
         }
 
+        // fragment 의 이름
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {

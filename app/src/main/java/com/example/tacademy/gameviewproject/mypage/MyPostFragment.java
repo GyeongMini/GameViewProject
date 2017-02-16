@@ -38,7 +38,7 @@ public class MyPostFragment extends Fragment {
 
         recyclerView = (RecyclerView)view.findViewById(R.id.mypage_mypost_recyclerview);
 
-        gridLayoutManager = new GridLayoutManager(getContext(),2);
+        gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gridLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManager);
 

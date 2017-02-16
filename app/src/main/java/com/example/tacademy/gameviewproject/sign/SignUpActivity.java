@@ -124,6 +124,7 @@ public class SignUpActivity extends BaseActivity {
 //            }
             email_et.setError(null);
         }
+
         if (TextUtils.isEmpty(password_et.getText().toString())) {
             password_et.setError("비밀번호를 입력 하세요");
             return false;

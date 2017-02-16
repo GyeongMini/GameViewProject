@@ -23,7 +23,6 @@ public class BaseActivity extends AppCompatActivity{
             window.setStatusBarColor(getResources().getColor(R.color.main));
         }
         //==================================
-
     }
 
     //공통 기능 1
