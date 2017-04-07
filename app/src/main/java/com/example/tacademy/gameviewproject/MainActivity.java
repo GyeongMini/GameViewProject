@@ -16,6 +16,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, IntroActivity.class);
         startActivity(intent);
         finish();
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
+        //테스트 중입니다 테스트 중입니다 테스트중입니다
 
 //        overridePendingTransition(0, 0);
 
